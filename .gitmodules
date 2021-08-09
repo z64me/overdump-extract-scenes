@@ -1,0 +1,6 @@
+[submodule "gfxasm"]
+	path = gfxasm
+	url = https://github.com/z64me/gfxasm
+[submodule "n64"]
+	path = n64
+	url = https://github.com/glankk/n64

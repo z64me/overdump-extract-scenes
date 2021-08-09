@@ -1,0 +1,6 @@
+bin/
+scene/
+*.txt
+*.bin
+*.z64
+*.exe
