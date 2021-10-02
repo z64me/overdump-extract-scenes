@@ -111,18 +111,9 @@ void procDlist(void *room, void *dlist)
 	if (!dlist)
 		return;
 	
-	/* triangle instruction parameters */
+	/* walk to end of display list */
 	for (b = dlist; *b != 0xb8; b += 8)
 	{
-		if (*b == 0xbf) /* G_TRI1 */
-		{
-			b[1] = b[5];
-			b[2] = b[6];
-			b[3] = b[7];
-			b[5] = 0;
-			b[6] = 0;
-			b[7] = 0;
-		}
 	}
 	b += 8;
 	sz = b - (unsigned char*)dlist;
