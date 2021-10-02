@@ -203,7 +203,7 @@ void ripScene(void *rom, unsigned sceneOfs, const char *name, int doorStride)
 	
 	/* make directory */
 	system("mkdir -p scene");
-	sprintf(buf, "mkdir -p scene/%08X", sceneOfs);
+	sprintf(buf, "mkdir -p \"scene/%08X - %s\"", sceneOfs, name);
 	system(buf);
 	
 	/* get scene size */
@@ -222,12 +222,12 @@ void ripScene(void *rom, unsigned sceneOfs, const char *name, int doorStride)
 		clearActorObject(b + start);
 		
 		/* write room file to folder */
-		sprintf(buf, "scene/%08X/room_%d.zmap", sceneOfs, i);
+		sprintf(buf, "scene/%08X - %s/room_%d.zmap", sceneOfs, name, i);
 		savefile(buf, b + start, end - start);
 		
 		/* convert dumped room */
 #ifdef CONVERT_ROOMS
-		sprintf(buf1, "bin/convert-room '%s' '%s'", buf, buf);
+		sprintf(buf1, "bin/convert-room \"%s\" \"%s\"", buf, buf);
 		system(buf1);
 #endif
 		
@@ -311,13 +311,11 @@ void ripScene(void *rom, unsigned sceneOfs, const char *name, int doorStride)
 #endif
 	
 	/* write scene.zscene to directory */
-	sprintf(buf, "scene/%08X/scene.zscene", sceneOfs);
+	sprintf(buf, "scene/%08X - %s/scene.zscene", sceneOfs, name);
 	savefile(buf, scene, sceneSz);
 	
 	/* zero out the scene so i can search for others */
 	memset(scene, 0, sceneSz);
-	
-	(void)name; /* -Wunused-parameter */
 }
 
 int main(int argc, char *argv[])
