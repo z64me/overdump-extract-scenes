@@ -12,6 +12,7 @@ This is intended to be run on Linux or WSL. It is possible to build and run it o
 cd ~
 git clone https://github.com/z64me/overdump-extract-scenes.git
 cd overdump-extract-scenes
+git submodule update --init
 ./build.sh
 bin/extract-scenes "/path/to/your/copy/of/the/overdump"
 ```
